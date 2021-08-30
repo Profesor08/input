@@ -4,6 +4,7 @@ export class Input {
   private input: HTMLInputElement | null;
   private inputContainer: HTMLElement | null;
   private inputError: HTMLElement | null;
+  private inputClear: HTMLElement | null;
   private value: string = "";
 
   constructor(private element: HTMLElement) {
@@ -11,6 +12,7 @@ export class Input {
     this.inputContainer =
       element.querySelector<HTMLElement>(".input-container");
     this.inputError = element.querySelector<HTMLElement>(".input-error");
+    this.inputClear = element.querySelector<HTMLElement>(".input-clear");
     this.init();
     this.updateStatus();
     inputsMap.set(element, this);
@@ -92,6 +94,19 @@ export class Input {
     }
   };
 
+  public clear = () => {
+    if (this.input) {
+      this.input.value = "";
+      this.input.dispatchEvent(
+        new Event("input", {
+          bubbles: true,
+          cancelable: true,
+          composed: true,
+        }),
+      );
+    }
+  };
+
   private init() {
     if (this.inputContainer) {
       this.inputContainer.addEventListener("click", this.focusSimulator);
@@ -109,6 +124,10 @@ export class Input {
       this.input.addEventListener("valid", this.validationHandler);
       this.input.addEventListener("focus", this.inputFocusHander);
     }
+
+    if (this.inputClear) {
+      this.inputClear.addEventListener("click", this.clear);
+    }
   }
 
   public dispose() {
@@ -124,6 +143,10 @@ export class Input {
       this.input.removeEventListener("invalid", this.validationHandler);
       this.input.removeEventListener("valid", this.validationHandler);
       this.input.removeEventListener("focus", this.inputFocusHander);
+    }
+
+    if (this.inputClear) {
+      this.inputClear.removeEventListener("click", this.clear);
     }
   }
 

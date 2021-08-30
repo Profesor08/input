@@ -7,6 +7,10 @@ module.exports = {
   output: {
     filename: "Input.js",
     path: path.resolve(__dirname, "lib"),
+    library: {
+      name: "Input",
+      type: "commonjs",
+    },
   },
   resolve: {
     extensions: [".ts", ".scss"],

@@ -1,12 +1,12 @@
 {
   "name": "@prof-dev/input",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Material input",
   "main": "lib/Input.js",
   "types": "lib/Input.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production --progress",
+    "build": "webpack --mode production && npx tsc",
     "clean": "tsc --build --clean"
   },
   "publishConfig": {
