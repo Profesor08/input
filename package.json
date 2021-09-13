@@ -1,6 +1,6 @@
 {
   "name": "@prof-dev/input",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Material input",
   "main": "lib/Input.js",
   "types": "lib/Input.d.ts",
