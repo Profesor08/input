@@ -5,8 +5,8 @@
   "main": "lib/Input.js",
   "types": "lib/Input.d.ts",
   "scripts": {
-    "dev:ts": "npx tsc -m esnext -w",
-    "dev:scss": "npx sass src/input.scss lib/input.css -w",
+    "dev:ts": "npx tsc --outDir docs -m esnext -w",
+    "dev:scss": "npx sass src/input.scss docs/input.css -w",
     "build": "npx tsc & npx sass src/input.scss lib/input.css",
     "clean": "tsc --build --clean"
   },
