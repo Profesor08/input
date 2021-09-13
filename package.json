@@ -1,12 +1,13 @@
 {
   "name": "@prof-dev/input",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Material input",
   "main": "lib/Input.js",
   "types": "lib/Input.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production && npx tsc",
+    "dev:ts": "npx tsc -m esnext -w",
+    "dev:scss": "npx sass src/input.scss lib/input.css -w",
+    "build": "npx tsc & npx sass src/input.scss lib/input.css",
     "clean": "tsc --build --clean"
   },
   "publishConfig": {
@@ -23,14 +24,7 @@
   },
   "homepage": "https://github.com/Profesor08/input#readme",
   "devDependencies": {
-    "clean-webpack-plugin": "*",
-    "css-loader": "^6.2.0",
-    "mini-css-extract-plugin": "^2.2.0",
     "sass": "^1.37.5",
-    "sass-loader": "^12.1.0",
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.3.5",
-    "webpack": "^5.48.0",
-    "webpack-cli": "^4.7.2"
+    "typescript": "^4.3.5"
   }
 }
