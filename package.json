@@ -8,6 +8,7 @@
     "dev:ts": "npx tsc --outDir docs -m esnext -w",
     "dev:scss": "npx sass src/input.scss docs/input.css -w",
     "build": "npx tsc & npx sass src/input.scss lib/input.css",
+    "build:docs": "npx tsc -m esnext --outDir docs & npx sass src/input.scss docs/input.css",
     "clean": "tsc --build --clean"
   },
   "publishConfig": {
