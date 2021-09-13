@@ -1,7 +1,11 @@
 const inputsMap = new Map<HTMLElement, Input>();
 
+export const constrain = (n: number, low: number, high: number) => {
+  return Math.max(Math.min(n, high), low);
+};
+
 export class Input {
-  private input: HTMLInputElement | null;
+  private input: HTMLInputElement | HTMLTextAreaElement | null;
   private inputContainer: HTMLElement | null;
   private inputError: HTMLElement | null;
   private inputClear: HTMLElement | null;
@@ -38,9 +42,46 @@ export class Input {
       } else {
         this.setActive(this.input !== null && this.input.value.length !== 0);
       }
+
+      if (this.input instanceof HTMLTextAreaElement) {
+        this.updateTextArea(this.input);
+      }
     } else {
       this.setActive(false);
     }
+  };
+
+  private updateTextArea = (textarea: HTMLTextAreaElement) => {
+    const style = getComputedStyle(textarea);
+    const lineHeight = parseInt(style.lineHeight) || 0;
+    const paddingTop = parseInt(style.paddingTop) || 0;
+    const paddingBottom = parseInt(style.paddingBottom) || 0;
+    const borderTopWidth = parseInt(style.borderTopWidth) || 0;
+    const borderBottomWidth = parseInt(style.borderBottomWidth) || 0;
+    const rows = textarea.rows;
+    const maxRows =
+      parseInt(textarea.getAttribute("data-max-rows") || "99999") || 99999;
+
+    textarea.style.setProperty("height", "0px");
+
+    const minHeight =
+      lineHeight * rows +
+      paddingTop +
+      paddingBottom +
+      borderTopWidth +
+      borderBottomWidth;
+
+    const maxHeight = maxRows * lineHeight;
+
+    const targetHeight =
+      Math.floor(textarea.scrollHeight / lineHeight) * lineHeight +
+      (textarea.scrollHeight % lineHeight ? 1 : 0) * lineHeight;
+
+    const height = constrain(targetHeight, minHeight, maxHeight);
+
+    textarea.style.setProperty("height", height + "px");
+    textarea.style.setProperty("min-height", minHeight + "px");
+    textarea.style.setProperty("max-height", maxHeight + "px");
   };
 
   private clearErrors = () => {
@@ -143,6 +184,11 @@ export class Input {
       this.input.removeEventListener("invalid", this.validationHandler);
       this.input.removeEventListener("valid", this.validationHandler);
       this.input.removeEventListener("focus", this.inputFocusHander);
+
+      if (this.input instanceof HTMLTextAreaElement) {
+        this.input.style.removeProperty("height");
+        this.input.style.removeProperty("max-height");
+      }
     }
 
     if (this.inputClear) {
