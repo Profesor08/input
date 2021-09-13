@@ -1,0 +1,61 @@
+.input:hover {
+  cursor: text;
+}
+.input:not(.is-error) .input-error {
+  height: 0;
+  opacity: 0;
+}
+.input.is-active .input-label {
+  transform: translateY(8px) scale(0.8) translateZ(0);
+}
+.input.is-error .input-label, .input.is-invalid .input-label {
+  color: #ff395e;
+}
+.input .input-container {
+  position: relative;
+  background: #f4f5f9;
+  border-radius: 5px;
+  padding: 27px 20px 8px 20px;
+  display: grid;
+  gap: 4px;
+}
+.input .input-field {
+  order: 2;
+  font-family: Roboto, sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  width: 100%;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  color: #49525d;
+  background-color: transparent;
+  resize: vertical;
+}
+.input .input-field:-webkit-autofill, .input .input-field:-webkit-autofill:hover, .input .input-field:-webkit-autofill:focus {
+  font-size: 16px;
+  line-height: 20px;
+  border: 0;
+  -webkit-text-fill-color: #49525d;
+  -webkit-box-shadow: 0 0 0px 0 transparent inset;
+  box-shadow: 0 0 0px 0 transparent inset;
+  transition: background-color 99999s ease-in-out 0s;
+}
+.input .input-label {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  transform-origin: 0 0;
+  transform: translateY(18px);
+  font-family: Roboto, sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #8a8b90;
+  transition: ease 0.3s;
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=input.css.map */

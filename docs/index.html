@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>Input</title>
+    <link rel="stylesheet" type="text/css" href="../lib/input.css" />
+    <style>
+      body {
+        margin: 0;
+      }
+
+      body * {
+        box-sizing: border-box;
+      }
+
+      .app {
+        padding: 32px;
+      }
+
+      .page-form {
+        display: grid;
+        grid-template-columns: minmax(auto, 390px);
+        justify-content: center;
+        gap: 40px;
+      }
+
+      .form {
+        grid-gap: 20px;
+        align-content: start;
+        display: grid;
+        gap: 20px;
+      }
+
+      .input-error {
+        overflow: hidden;
+      }
+
+      .input-error .error-inner {
+        background-color: #ffeaef;
+        border-radius: 5px;
+        color: #ff395e;
+        font-family: Futura New, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        margin-top: 5px;
+        padding: 5px 20px;
+        position: relative;
+      }
+
+      .input-error .error-inner:before {
+        background: #ffeaef;
+        -webkit-clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        content: "";
+        height: 5px;
+        left: 20px;
+        position: absolute;
+        top: -5px;
+        width: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <form class="page-form" action="/forms.html" data-bitwarden-watching="1">
+        <div class="form">
+          <div class="input">
+            <div class="input-container">
+              <input class="input-field" type="email" name="email" />
+              <div class="input-label">Email</div>
+            </div>
+          </div>
+          <div class="input">
+            <div class="input-container">
+              <input class="input-field" type="password" name="password" />
+              <div class="input-label">Password</div>
+            </div>
+          </div>
+          <div class="input is-active">
+            <div class="input-container">
+              <input
+                class="input-field"
+                type="email"
+                name="email"
+                value="val@ss.ss"
+              />
+              <div class="input-label">Email</div>
+            </div>
+          </div>
+          <div class="input is-error is-active">
+            <div class="input-container">
+              <input
+                class="input-field"
+                type="email"
+                name="email"
+                value="value"
+                required=""
+              />
+              <div class="input-label">Required with error &amp; value</div>
+            </div>
+            <div class="input-error">
+              <div class="error-inner">Wrong value error message</div>
+            </div>
+          </div>
+          <div class="input is-error is-active">
+            <div class="input-container">
+              <input
+                class="input-field"
+                type="email"
+                name="email"
+                value="value"
+              />
+              <div class="input-label">Required with error</div>
+            </div>
+            <div class="input-error">
+              <div class="error-inner">Is required</div>
+            </div>
+          </div>
+          <div class="input">
+            <div class="input-container">
+              <textarea
+                class="input-field"
+                rows="3"
+                data-max-rows="7"
+              ></textarea>
+              <div class="input-label">Textarea</div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script type="module">
+      import { Input } from "../lib/Input.js";
+
+      Input.initAllAvailableOnPage();
+    </script>
+  </body>
+</html>
